@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata: 
+  name: ktds-poc-svc
+  namespace: ktds
+  labels:
+    app.kubernetes.io/component: server
+    app.kubernetes.io/name: ktds-poc
+    app.kubernetes.io/part-of: ktds
+spec:
+  type: LoadBalancer
+  selector:
+    app.kubernetes.io/name: ktds-poc
+  ports:
+    - name: http
+      port: 8888
+      targetPort: 8888

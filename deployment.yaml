@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ktds-poc
+  namespace: ktds
+  labels:
+    app.kubernetes.io/component: server
+    app.kubernetes.io/name: ktds-poc
+    app.kubernetes.io/part-of: ktds
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: ktds-poc
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: ktds-poc
+    spec:
+      containers:
+      - name: ktds-poc
+        image: 637423458144.dkr.ecr.ap-northeast-2.amazonaws.com/servicenow/ktdspoc:latest
+        imagePullPolicy: Always
+        ports:
+        - containerPort: 8888
